@@ -1,11 +1,11 @@
 "use client"
-
-import { useState, useEffect, useRef } from "react"
-import { motion, useInView, AnimatePresence, useMotionValue, useTransform } from "framer-motion"
-import { Lightbulb, Bot, Code, Cpu, Trophy, ChevronDown, ChevronUp, Menu, X, Cog, ArrowDown } from "lucide-react"
+import { useState, useEffect } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Lightbulb, Bot, Code, Cpu, Trophy, Menu, X, Cog, ArrowDown } from "lucide-react"
 import { CTASection } from "@/components/ui/hero-dithering-card"
 import { ShaderAnimation } from "@/components/ui/shader-animation"
 import { SensorShowcase } from "@/components/ui/sensor-showcase"
+import { EtherealShadow } from "@/components/ui/etheral-shadow"
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 60 },
@@ -63,16 +63,12 @@ export default function Home() {
       const distance = targetPosition - startPosition
       const duration = 1000
       let startTime: number | null = null
-
       const animateScroll = (currentTime: number) => {
         if (startTime === null) startTime = currentTime
         const timeElapsed = currentTime - startTime
         const progress = Math.min(timeElapsed / duration, 1)
-
-        // Ease out cubic for smooth deceleration
         const easeOut = 1 - Math.pow(1 - progress, 3)
         window.scrollTo(0, startPosition + distance * easeOut)
-
         if (timeElapsed < duration) {
           requestAnimationFrame(animateScroll)
         }
@@ -86,10 +82,8 @@ export default function Home() {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight
       const progress = (window.scrollY / totalHeight) * 100
       setScrollProgress(Math.min(100, Math.max(0, progress)))
-
       const sectionElements = sections.map(s => document.getElementById(s.id))
       const scrollPos = window.scrollY + window.innerHeight / 3
-
       for (let i = sectionElements.length - 1; i >= 0; i--) {
         const el = sectionElements[i]
         if (el && el.offsetTop <= scrollPos) {
@@ -98,7 +92,6 @@ export default function Home() {
         }
       }
     }
-
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
@@ -106,11 +99,6 @@ export default function Home() {
   const scrollToNext = () => {
     const nextIndex = Math.min(activeSection + 1, sections.length - 1)
     scrollToSection(nextIndex)
-  }
-
-  const scrollToPrev = () => {
-    const prevIndex = Math.max(activeSection - 1, 0)
-    scrollToSection(prevIndex)
   }
 
   return (
@@ -155,7 +143,6 @@ export default function Home() {
         >
           {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
-
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -182,7 +169,7 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* Section 1: Hero */}
+      {/* HERO */}
       <section id="hero" className="relative h-screen">
         <div className="absolute inset-0 z-0">
           <ShaderAnimation />
@@ -195,9 +182,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 2: What is Botball */}
-      <section id="what-is" className="relative min-h-screen flex items-center py-24 px-4 md:px-6">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-950/50 via-background to-purple-950/50" />
+      {/* WHAT IS BOTBALL */}
+      <section id="what-is" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
+        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -217,7 +204,6 @@ export default function Home() {
               Botball is a national K-12 educational robotics competition where teams of students design, build, and program autonomous robots to solve complex challenges. Unlike remote-controlled robots, Botball robots operate entirely on their own using pre-written code and sensor inputs.
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -263,8 +249,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 3: How Botball Works */}
-      <section id="how-works" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30">
+      {/* HOW BOTBALL WORKS */}
+      <section id="how-works" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
+        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -284,7 +271,6 @@ export default function Home() {
               Each team receives an identical kit of parts and has ~12 weeks to build robots that can complete that year's game challenge. Robots must be fully autonomous. That means if it fails, you cannot intervene.
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             {[
               {
@@ -350,13 +336,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 4: Sensors */}
-      <section id="sensors" className="relative">
+      {/* SENSORS */}
+      <section id="sensors" className="relative overflow-hidden">
+        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
         <SensorShowcase onScrollNext={scrollToNext} nextLabel={sections[4]?.label || "Next"} />
       </section>
 
-      {/* Section 5: Botball Functions */}
-      <section id="functions" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30">
+      {/* BOTBALL FUNCTIONS */}
+      <section id="functions" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
+        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -376,7 +364,6 @@ export default function Home() {
               The KIPR library provides powerful C functions for controlling motors, reading sensors, and managing robot behavior. Here are the core functions you'll use.
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
@@ -463,8 +450,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 6: Programming / Code */}
-      <section id="programming" className="relative min-h-screen flex items-center py-24 px-4 md:px-6">
+      {/* PROGRAMMING */}
+      <section id="programming" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
+        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -484,7 +472,6 @@ export default function Home() {
               Botball robots are programmed in C using the KIPR library. Code is written on a computer, compiled, and uploaded to the robot all through a self-hosted IDE (Integrated Development Environment) all on the bot.
             </p>
           </motion.div>
-
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -492,7 +479,6 @@ export default function Home() {
             viewport={{ once: true, margin: "-100px" }}
             className="relative rounded-3xl border border-white/10 bg-[#1e1e2e] overflow-hidden backdrop-blur-xl"
           >
-            {/* Code header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#1a1a2e]/50">
               <div className="flex items-center gap-4">
                 <div className="flex gap-2">
@@ -507,76 +493,56 @@ export default function Home() {
                 <span className="px-2 py-1 rounded bg-white/5">Linux</span>
               </div>
             </div>
-
-            {/* Code content */}
             <div className="p-6 md:p-8 overflow-x-auto">
               <pre className="text-sm font-mono leading-relaxed text-white/90">
 {`#include <kipr/kipr.h>
-
 // Motor ports
 #define LEFT_MOTOR 0
 #define RIGHT_MOTOR 1
 #define SERVO_PORT 2
-
 // Sensor ports
 #define LIGHT_SENSOR 0
 #define TOUCH_SENSOR 1
 #define ET_SENSOR 2
-
 void move_forward(int speed, int distance) {
-    // Reset encoders for precise movement
     clear_enc_count(LEFT_MOTOR);
     clear_enc_count(RIGHT_MOTOR);
-
-    // Calculate target encoder counts
-    // ~100 counts per wheel rotation
     int target = distance * 100;
-
-    // Move until target distance reached
     while(get_enc_count(LEFT_MOTOR) < target) {
         motor(LEFT_MOTOR, speed);
         motor(RIGHT_MOTOR, speed);
     }
-
-    // Stop motors
     motor(LEFT_MOTOR, 0);
     motor(RIGHT_MOTOR, 0);
 }
-
 void follow_line(int speed) {
     int light_value = analog(LIGHT_SENSOR);
-
-    if(light_value > 500) {  // On dark line
+    if(light_value > 500) {
         motor(LEFT_MOTOR, speed);
         motor(RIGHT_MOTOR, speed - 20);
-    } else {  // On light surface
+    } else {
         motor(LEFT_MOTOR, speed - 20);
         motor(RIGHT_MOTOR, speed);
     }
 }
-
 void avoid_obstacle() {
-    if(digital(TOUCH_SENSOR) == 0) {  // Touch detected
+    if(digital(TOUCH_SENSOR) == 0) {
         motor(LEFT_MOTOR, -30);
         motor(RIGHT_MOTOR, -30);
-        msleep(1000);  // Back up
+        msleep(1000);
         motor(LEFT_MOTOR, 30);
         motor(RIGHT_MOTOR, -30);
-        msleep(500);  // Turn
+        msleep(500);
     }
 }
-
 int main() {
     kipr_init();
-    wait_for_button(0);  // Wait for start
-
-    // Main loop
+    wait_for_button(0);
     for(int i = 0; i < 200; i++) {
         avoid_obstacle();
         follow_line(40);
         msleep(100);
     }
-
     motor(LEFT_MOTOR, 0);
     motor(RIGHT_MOTOR, 0);
     kipr_close();
@@ -585,7 +551,6 @@ int main() {
               </pre>
             </div>
           </motion.div>
-
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -608,10 +573,9 @@ int main() {
         </div>
       </section>
 
-      {/* Section 7: Motors & Servos - FIXED CENTERING */}
-      <section id="motors" className="relative min-h-screen flex items-center py-24 px-4 md:px-6">
-        <div className="absolute inset-0 bg-gradient-to-br from-orange-950/30 via-background to-red-950/30" />
-        
+      {/* MOTORS & SERVOS */}
+      <section id="motors" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
+        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -631,9 +595,7 @@ int main() {
               Movement in Botball robots is controlled by motors for drive wheels and servos for precise positioning of claws, bulldozers, and other mechanisms.
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Motors Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -658,14 +620,7 @@ int main() {
                     "Voltage: 6-12V DC operation",
                     "PWM speed control via KIPR library"
                   ].map((spec, j) => (
-                    <motion.div
-                      key={j}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: j * 0.1 }}
-                      className="flex items-start gap-3"
-                    >
+                    <motion.div key={j} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: j * 0.1 }} className="flex items-start gap-3">
                       <div className="mt-1.5 w-2 h-2 rounded-full bg-blue-400 flex-shrink-0" />
                       <span className="text-muted-foreground">{spec}</span>
                     </motion.div>
@@ -674,7 +629,6 @@ int main() {
               </div>
             </motion.div>
 
-            {/* Servos Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -700,14 +654,7 @@ int main() {
                     "Rotation: 0-180 degrees",
                     "Response time: <0.2s to reach target position"
                   ].map((spec, j) => (
-                    <motion.div
-                      key={j}
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: j * 0.1 }}
-                      className="flex items-start gap-3"
-                    >
+                    <motion.div key={j} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: j * 0.1 }} className="flex items-start gap-3">
                       <div className="mt-1.5 w-2 h-2 rounded-full bg-purple-400 flex-shrink-0" />
                       <span className="text-muted-foreground">{spec}</span>
                     </motion.div>
@@ -716,14 +663,13 @@ int main() {
               </div>
             </motion.div>
           </div>
-
-          {/* Centered Navigation Button */}
           <SectionNavButton onClick={scrollToNext} label={sections[7]?.label || "Next"} />
         </div>
       </section>
-      
-      {/* Section 8: Community Service */}
-      <section id="community" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30">
+
+      {/* COMMUNITY SERVICE */}
+      <section id="community" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
+        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -743,7 +689,6 @@ int main() {
               Our Botball team is committed to giving back to the community through robotics education, outreach events, and mentoring the next generation of engineers.
             </p>
           </motion.div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
