@@ -169,7 +169,7 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* HERO - No black background */}
+      {/* HERO - No change */}
       <section id="hero" className="relative h-screen">
         <div className="absolute inset-0 z-0">
           <ShaderAnimation />
@@ -183,7 +183,7 @@ export default function Home() {
       </section>
 
       {/* WHAT IS BOTBALL */}
-      <section id="what-is" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
+      <section id="what-is" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-[#0f172a]">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -249,7 +249,7 @@ export default function Home() {
       </section>
 
       {/* HOW BOTBALL WORKS */}
-      <section id="how-works" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black overflow-hidden">
+      <section id="how-works" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-[#0f172a]">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -335,12 +335,12 @@ export default function Home() {
       </section>
 
       {/* SENSORS */}
-      <section id="sensors" className="relative bg-black">
+      <section id="sensors" className="relative bg-[#0f172a]">
         <SensorShowcase onScrollNext={scrollToNext} nextLabel={sections[4]?.label || "Next"} />
       </section>
 
       {/* BOTBALL FUNCTIONS */}
-      <section id="functions" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
+      <section id="functions" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-[#0f172a]">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -447,7 +447,7 @@ export default function Home() {
       </section>
 
       {/* PROGRAMMING */}
-      <section id="programming" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
+      <section id="programming" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-[#0f172a]">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -569,7 +569,7 @@ int main() {
       </section>
 
       {/* MOTORS & SERVOS */}
-      <section id="motors" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
+      <section id="motors" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-[#0f172a]">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -676,7 +676,7 @@ int main() {
       </section>
 
       {/* COMMUNITY SERVICE */}
-      <section id="community" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
+      <section id="community" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-[#0f172a]">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -760,7 +760,7 @@ int main() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-white/10 bg-black">
+      <footer className="py-12 px-4 border-t border-white/10 bg-[#0f172a]">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-sm text-muted-foreground">
             © 2026 Made with 💖 By{" "}
