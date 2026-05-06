@@ -169,7 +169,7 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* HERO - No change */}
+      {/* HERO */}
       <section id="hero" className="relative h-screen">
         <div className="absolute inset-0 z-0">
           <ShaderAnimation />
@@ -196,7 +196,7 @@ export default function Home() {
               <Trophy className="w-4 h-4" />
               <span>About Botball</span>
             </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 text-white">
               What is Botball?
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -238,7 +238,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <item.icon className="w-8 h-8 text-foreground" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-white">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
@@ -262,7 +262,7 @@ export default function Home() {
               <Bot className="w-4 h-4" />
               <span>The Format</span>
             </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 text-white">
               How Botball Works
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -310,7 +310,7 @@ export default function Home() {
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                     <section.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="text-3xl font-bold mb-6">{section.title}</h3>
+                  <h3 className="text-3xl font-bold mb-6 text-white">{section.title}</h3>
                   <ul className="space-y-4">
                     {section.items.map((item, j) => (
                       <motion.li
@@ -334,7 +334,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SENSORS */}
+      {/* SENSORS - No change to header */}
       <section id="sensors" className="relative bg-[#0f172a]">
         <SensorShowcase onScrollNext={scrollToNext} nextLabel={sections[4]?.label || "Next"} />
       </section>
@@ -353,7 +353,7 @@ export default function Home() {
               <Code className="w-4 h-4" />
               <span>KIPR C Library</span>
             </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 text-white">
               Botball Functions
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -422,7 +422,7 @@ export default function Home() {
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors duration-500" />
                 <div className="relative z-10">
-                  <h3 className="text-lg font-bold mb-4 text-primary">{category.category}</h3>
+                  <h3 className="text-lg font-bold mb-4 text-white">{category.category}</h3>
                   <div className="space-y-3">
                     {category.functions.map((func, j) => (
                       <motion.div
@@ -460,7 +460,7 @@ export default function Home() {
               <Code className="w-4 h-4" />
               <span>The Code</span>
             </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 text-white">
               Robot Programming
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -559,7 +559,7 @@ int main() {
               { title: "Sensor-driven", desc: "Code uses sensor inputs to make autonomous decisions" }
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-2xl border border-white/10 bg-background/50 backdrop-blur-sm">
-                <h4 className="font-semibold mb-2">{item.title}</h4>
+                <h4 className="font-semibold mb-2 text-white">{item.title}</h4>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
               </div>
             ))}
@@ -582,7 +582,7 @@ int main() {
               <Cog className="w-4 h-4" />
               <span>The Moving Parts</span>
             </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 text-white">
               Motors & Servos
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -602,7 +602,7 @@ int main() {
                 <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6">
                   <Cog className="w-8 h-8 text-blue-400" />
                 </div>
-                <h3 className="text-3xl font-bold mb-4">Motors</h3>
+                <h3 className="text-3xl font-bold mb-4 text-white">Motors</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Used for drive wheels and other continuous rotation applications. They provide the main drivetrain and movement for Botball robots.
                 </p>
@@ -643,7 +643,7 @@ int main() {
                 <div className="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6">
                   <Cpu className="w-8 h-8 text-purple-400" />
                 </div>
-                <h3 className="text-3xl font-bold mb-4">Servos</h3>
+                <h3 className="text-3xl font-bold mb-4 text-white">Servos</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Position-controlled devices that rotate to a specific angle (0-180 degrees) and hold position. Used for claws, bulldozers, and other lifting mechanisms.
                 </p>
@@ -689,7 +689,7 @@ int main() {
               <Trophy className="w-4 h-4" />
               <span>Giving Back</span>
             </div>
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 text-white">
               Community Service
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
@@ -749,7 +749,7 @@ int main() {
                   <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <item.icon className="w-7 h-7 text-foreground" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-bold mb-3">{item.title}</h3>
+                  <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
