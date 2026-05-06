@@ -82,6 +82,7 @@ export default function Home() {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight
       const progress = (window.scrollY / totalHeight) * 100
       setScrollProgress(Math.min(100, Math.max(0, progress)))
+
       const sectionElements = sections.map(s => document.getElementById(s.id))
       const scrollPos = window.scrollY + window.innerHeight / 3
       for (let i = sectionElements.length - 1; i >= 0; i--) {
@@ -169,7 +170,7 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* HERO */}
+      {/* HERO - No Ethereal Shadow */}
       <section id="hero" className="relative h-screen">
         <div className="absolute inset-0 z-0">
           <ShaderAnimation />
@@ -184,7 +185,11 @@ export default function Home() {
 
       {/* WHAT IS BOTBALL */}
       <section id="what-is" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
-        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
+        <EtherealShadow 
+          color="rgba(0, 0, 0, 0.96)" 
+          animation={{ scale: 65, speed: 55 }} 
+          noise={{ opacity: 0.25, scale: 1.1 }} 
+        />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -251,7 +256,11 @@ export default function Home() {
 
       {/* HOW BOTBALL WORKS */}
       <section id="how-works" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
-        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
+        <EtherealShadow 
+          color="rgba(0, 0, 0, 0.96)" 
+          animation={{ scale: 65, speed: 55 }} 
+          noise={{ opacity: 0.25, scale: 1.1 }} 
+        />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -338,13 +347,21 @@ export default function Home() {
 
       {/* SENSORS */}
       <section id="sensors" className="relative overflow-hidden">
-        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
+        <EtherealShadow 
+          color="rgba(0, 0, 0, 0.96)" 
+          animation={{ scale: 65, speed: 55 }} 
+          noise={{ opacity: 0.25, scale: 1.1 }} 
+        />
         <SensorShowcase onScrollNext={scrollToNext} nextLabel={sections[4]?.label || "Next"} />
       </section>
 
       {/* BOTBALL FUNCTIONS */}
       <section id="functions" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
-        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
+        <EtherealShadow 
+          color="rgba(0, 0, 0, 0.96)" 
+          animation={{ scale: 65, speed: 55 }} 
+          noise={{ opacity: 0.25, scale: 1.1 }} 
+        />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -452,7 +469,11 @@ export default function Home() {
 
       {/* PROGRAMMING */}
       <section id="programming" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
-        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
+        <EtherealShadow 
+          color="rgba(0, 0, 0, 0.96)" 
+          animation={{ scale: 65, speed: 55 }} 
+          noise={{ opacity: 0.25, scale: 1.1 }} 
+        />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -505,39 +526,44 @@ export default function Home() {
 #define TOUCH_SENSOR 1
 #define ET_SENSOR 2
 void move_forward(int speed, int distance) {
+    // Reset encoders for precise movement
     clear_enc_count(LEFT_MOTOR);
     clear_enc_count(RIGHT_MOTOR);
+    // Calculate target encoder counts
     int target = distance * 100;
+    // Move until target distance reached
     while(get_enc_count(LEFT_MOTOR) < target) {
         motor(LEFT_MOTOR, speed);
         motor(RIGHT_MOTOR, speed);
     }
+    // Stop motors
     motor(LEFT_MOTOR, 0);
     motor(RIGHT_MOTOR, 0);
 }
 void follow_line(int speed) {
     int light_value = analog(LIGHT_SENSOR);
-    if(light_value > 500) {
+    if(light_value > 500) { // On dark line
         motor(LEFT_MOTOR, speed);
         motor(RIGHT_MOTOR, speed - 20);
-    } else {
+    } else { // On light surface
         motor(LEFT_MOTOR, speed - 20);
         motor(RIGHT_MOTOR, speed);
     }
 }
 void avoid_obstacle() {
-    if(digital(TOUCH_SENSOR) == 0) {
+    if(digital(TOUCH_SENSOR) == 0) { // Touch detected
         motor(LEFT_MOTOR, -30);
         motor(RIGHT_MOTOR, -30);
-        msleep(1000);
+        msleep(1000); // Back up
         motor(LEFT_MOTOR, 30);
         motor(RIGHT_MOTOR, -30);
-        msleep(500);
+        msleep(500); // Turn
     }
 }
 int main() {
     kipr_init();
-    wait_for_button(0);
+    wait_for_button(0); // Wait for start
+    // Main loop
     for(int i = 0; i < 200; i++) {
         avoid_obstacle();
         follow_line(40);
@@ -575,7 +601,11 @@ int main() {
 
       {/* MOTORS & SERVOS */}
       <section id="motors" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
-        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
+        <EtherealShadow 
+          color="rgba(0, 0, 0, 0.96)" 
+          animation={{ scale: 65, speed: 55 }} 
+          noise={{ opacity: 0.25, scale: 1.1 }} 
+        />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -596,6 +626,7 @@ int main() {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Motors Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -620,7 +651,14 @@ int main() {
                     "Voltage: 6-12V DC operation",
                     "PWM speed control via KIPR library"
                   ].map((spec, j) => (
-                    <motion.div key={j} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: j * 0.1 }} className="flex items-start gap-3">
+                    <motion.div
+                      key={j}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: j * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
                       <div className="mt-1.5 w-2 h-2 rounded-full bg-blue-400 flex-shrink-0" />
                       <span className="text-muted-foreground">{spec}</span>
                     </motion.div>
@@ -629,6 +667,7 @@ int main() {
               </div>
             </motion.div>
 
+            {/* Servos Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -654,7 +693,14 @@ int main() {
                     "Rotation: 0-180 degrees",
                     "Response time: <0.2s to reach target position"
                   ].map((spec, j) => (
-                    <motion.div key={j} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: j * 0.1 }} className="flex items-start gap-3">
+                    <motion.div
+                      key={j}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: j * 0.1 }}
+                      className="flex items-start gap-3"
+                    >
                       <div className="mt-1.5 w-2 h-2 rounded-full bg-purple-400 flex-shrink-0" />
                       <span className="text-muted-foreground">{spec}</span>
                     </motion.div>
@@ -669,7 +715,11 @@ int main() {
 
       {/* COMMUNITY SERVICE */}
       <section id="community" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
-        <EtherealShadow color="rgba(15, 23, 42, 0.92)" animation={{ scale: 75, speed: 65 }} noise={{ opacity: 0.5, scale: 1.15 }} />
+        <EtherealShadow 
+          color="rgba(0, 0, 0, 0.96)" 
+          animation={{ scale: 65, speed: 55 }} 
+          noise={{ opacity: 0.25, scale: 1.1 }} 
+        />
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
