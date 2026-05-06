@@ -608,9 +608,10 @@ int main() {
         </div>
       </section>
 
-      {/* Section 7: Motors & Servos */}
+      {/* Section 7: Motors & Servos - FIXED CENTERING */}
       <section id="motors" className="relative min-h-screen flex items-center py-24 px-4 md:px-6">
         <div className="absolute inset-0 bg-gradient-to-br from-orange-950/30 via-background to-red-950/30" />
+        
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -632,6 +633,7 @@ int main() {
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Motors Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -672,6 +674,7 @@ int main() {
               </div>
             </motion.div>
 
+            {/* Servos Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -694,7 +697,7 @@ int main() {
                     "Precision: ±1 degree accuracy across full range",
                     "Torque: ~40 oz-in at 6V operating voltage",
                     "Control: 1000-2000μs pulse width via PWM signal",
-                    "Rotation: 0-180 degrees (or split up into 2700 degrees to be more precise)",
+                    "Rotation: 0-180 degrees",
                     "Response time: <0.2s to reach target position"
                   ].map((spec, j) => (
                     <motion.div
@@ -713,10 +716,12 @@ int main() {
               </div>
             </motion.div>
           </div>
-        </div>
-      <SectionNavButton onClick={scrollToNext} label={sections[7]?.label || "Next"} />
-      </section>
 
+          {/* Centered Navigation Button */}
+          <SectionNavButton onClick={scrollToNext} label={sections[7]?.label || "Next"} />
+        </div>
+      </section>
+      
       {/* Section 8: Community Service */}
       <section id="community" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
