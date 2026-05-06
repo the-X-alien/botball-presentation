@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { Lightbulb, Zap, Radio, Gauge, Compass, Palette, ExternalLink } from 'lucide-react';
+import { Lightbulb, Zap, Radio, Gauge, Compass, Palette, ExternalLink, ArrowDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface SensorData {
@@ -247,7 +247,12 @@ const SensorCard: React.FC<SensorCardProps> = ({ sensor, index }) => {
   );
 };
 
-export function SensorShowcase() {
+interface SensorShowcaseProps {
+  onScrollNext?: () => void;
+  nextLabel?: string;
+}
+
+export function SensorShowcase({ onScrollNext, nextLabel }: SensorShowcaseProps) {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-background py-16 md:py-24">
       {/* Background effects */}
@@ -306,6 +311,32 @@ export function SensorShowcase() {
             <SensorCard key={sensor.id} sensor={sensor} index={index} />
           ))}
         </div>
+
+        {/* Scroll to next section button */}
+        {onScrollNext && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="flex justify-center mt-16"
+          >
+            <motion.button
+              onClick={onScrollNext}
+              className="group flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="text-xs font-medium tracking-widest">SCROLL TO {nextLabel?.toUpperCase() || "NEXT"}</span>
+              <motion.div
+                animate={{ y: [0, 8, 0] }}
+                transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              >
+                <ArrowDown className="w-5 h-5" />
+              </motion.div>
+            </motion.button>
+          </motion.div>
+        )}
       </div>
     </section>
   );

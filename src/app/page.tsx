@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react"
 import { motion, useInView, AnimatePresence, useMotionValue, useTransform } from "framer-motion"
-import { Lightbulb, Bot, Code, Cpu, Trophy, ChevronDown, Menu, X, Cog, ArrowDown } from "lucide-react"
+import { Lightbulb, Bot, Code, Cpu, Trophy, ChevronDown, ChevronUp, Menu, X, Cog, ArrowDown } from "lucide-react"
 import { CTASection } from "@/components/ui/hero-dithering-card"
 import { ShaderAnimation } from "@/components/ui/shader-animation"
 import { SensorShowcase } from "@/components/ui/sensor-showcase"
@@ -10,6 +10,33 @@ import { SensorShowcase } from "@/components/ui/sensor-showcase"
 const sectionVariants = {
   hidden: { opacity: 0, y: 60 },
   visible: { opacity: 1, y: 0 }
+}
+
+function SectionNavButton({ onClick, label }: { onClick: () => void, label: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.5 }}
+      className="flex justify-center mt-16"
+    >
+      <motion.button
+        onClick={onClick}
+        className="group flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        <span className="text-xs font-medium tracking-widest">SCROLL TO {label.toUpperCase()}</span>
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+        >
+          <ArrowDown className="w-5 h-5" />
+        </motion.div>
+      </motion.button>
+    </motion.div>
+  )
 }
 
 const sections = [
@@ -28,12 +55,30 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState(0)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  const snapToSection = (index: number) => {
+  const scrollToSection = (index: number) => {
     const el = document.getElementById(sections[index]?.id)
     if (el) {
-      el.scrollIntoView({ behavior: "smooth" })
+      const targetPosition = el.offsetTop
+      const startPosition = window.scrollY
+      const distance = targetPosition - startPosition
+      const duration = 1000
+      let startTime: number | null = null
+
+      const animateScroll = (currentTime: number) => {
+        if (startTime === null) startTime = currentTime
+        const timeElapsed = currentTime - startTime
+        const progress = Math.min(timeElapsed / duration, 1)
+
+        // Ease out cubic for smooth deceleration
+        const easeOut = 1 - Math.pow(1 - progress, 3)
+        window.scrollTo(0, startPosition + distance * easeOut)
+
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animateScroll)
+        }
+      }
+      requestAnimationFrame(animateScroll)
     }
-    setMobileMenuOpen(false)
   }
 
   useEffect(() => {
@@ -60,7 +105,12 @@ export default function Home() {
 
   const scrollToNext = () => {
     const nextIndex = Math.min(activeSection + 1, sections.length - 1)
-    snapToSection(nextIndex)
+    scrollToSection(nextIndex)
+  }
+
+  const scrollToPrev = () => {
+    const prevIndex = Math.max(activeSection - 1, 0)
+    scrollToSection(prevIndex)
   }
 
   return (
@@ -78,7 +128,7 @@ export default function Home() {
         {sections.map((section, i) => (
           <button
             key={section.id}
-            onClick={() => snapToSection(i)}
+            onClick={() => scrollToSection(i)}
             className="group relative flex items-center"
           >
             <div className={`w-3 h-3 rounded-full border-2 transition-all duration-300 ${
@@ -117,7 +167,7 @@ export default function Home() {
               {sections.map((section, i) => (
                 <button
                   key={section.id}
-                  onClick={() => snapToSection(i)}
+                  onClick={() => scrollToSection(i)}
                   className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-colors ${
                     i === activeSection
                       ? "bg-cyan-400/20 text-cyan-400"
@@ -138,30 +188,11 @@ export default function Home() {
           <ShaderAnimation />
         </div>
         <div className="relative z-10 h-full flex items-center justify-center">
-          <CTASection />
+          <CTASection onExplore={scrollToNext} />
         </div>
-        {/* Minimalistic 3D snap scroll down button */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-        >
-          <motion.button
-            onClick={scrollToNext}
-            className="group flex flex-col items-center gap-2 text-white/60 hover:text-white transition-colors"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span className="text-xs font-medium tracking-widest">SCROLL TO EXPLORE</span>
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
-            >
-              <ArrowDown className="w-5 h-5" />
-            </motion.div>
-          </motion.button>
-        </motion.div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+          <SectionNavButton onClick={scrollToNext} label={sections[1]?.label || "Next"} />
+        </div>
       </section>
 
       {/* Section 2: What is Botball */}
@@ -228,6 +259,7 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+          <SectionNavButton onClick={scrollToNext} label={sections[2]?.label || "Next"} />
         </div>
       </section>
 
@@ -314,12 +346,13 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+          <SectionNavButton onClick={scrollToNext} label={sections[3]?.label || "Next"} />
         </div>
       </section>
 
       {/* Section 4: Sensors */}
       <section id="sensors" className="relative">
-        <SensorShowcase />
+        <SensorShowcase onScrollNext={scrollToNext} nextLabel={sections[4]?.label || "Next"} />
       </section>
 
       {/* Section 5: Botball Functions */}
@@ -426,6 +459,7 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+          <SectionNavButton onClick={scrollToNext} label={sections[5]?.label || "Next"} />
         </div>
       </section>
 
@@ -570,6 +604,7 @@ int main() {
               </div>
             ))}
           </motion.div>
+          <SectionNavButton onClick={scrollToNext} label={sections[6]?.label || "Next"} />
         </div>
       </section>
 
@@ -679,6 +714,7 @@ int main() {
             </motion.div>
           </div>
         </div>
+      <SectionNavButton onClick={scrollToNext} label={sections[7]?.label || "Next"} />
       </section>
 
       {/* Section 8: Community Service */}
@@ -762,6 +798,7 @@ int main() {
               </motion.div>
             ))}
           </div>
+          <SectionNavButton onClick={() => scrollToSection(0)} label="Home" />
         </div>
       </section>
 
