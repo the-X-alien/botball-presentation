@@ -5,7 +5,6 @@ import { Lightbulb, Bot, Code, Cpu, Trophy, Menu, X, Cog, ArrowDown } from "luci
 import { CTASection } from "@/components/ui/hero-dithering-card"
 import { ShaderAnimation } from "@/components/ui/shader-animation"
 import { SensorShowcase } from "@/components/ui/sensor-showcase"
-import { EtherealShadow } from "@/components/ui/etheral-shadow"
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 60 },
@@ -170,7 +169,7 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* HERO - No Ethereal Shadow */}
+      {/* HERO - No black background */}
       <section id="hero" className="relative h-screen">
         <div className="absolute inset-0 z-0">
           <ShaderAnimation />
@@ -184,12 +183,7 @@ export default function Home() {
       </section>
 
       {/* WHAT IS BOTBALL */}
-      <section id="what-is" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
-        <EtherealShadow 
-          color="rgba(0, 0, 0, 0.96)" 
-          animation={{ scale: 65, speed: 55 }} 
-          noise={{ opacity: 0.25, scale: 1.1 }} 
-        />
+      <section id="what-is" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -255,12 +249,7 @@ export default function Home() {
       </section>
 
       {/* HOW BOTBALL WORKS */}
-      <section id="how-works" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
-        <EtherealShadow 
-          color="rgba(0, 0, 0, 0.96)" 
-          animation={{ scale: 65, speed: 55 }} 
-          noise={{ opacity: 0.25, scale: 1.1 }} 
-        />
+      <section id="how-works" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -346,22 +335,12 @@ export default function Home() {
       </section>
 
       {/* SENSORS */}
-      <section id="sensors" className="relative overflow-hidden">
-        <EtherealShadow 
-          color="rgba(0, 0, 0, 0.96)" 
-          animation={{ scale: 65, speed: 55 }} 
-          noise={{ opacity: 0.25, scale: 1.1 }} 
-        />
+      <section id="sensors" className="relative bg-black">
         <SensorShowcase onScrollNext={scrollToNext} nextLabel={sections[4]?.label || "Next"} />
       </section>
 
       {/* BOTBALL FUNCTIONS */}
-      <section id="functions" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
-        <EtherealShadow 
-          color="rgba(0, 0, 0, 0.96)" 
-          animation={{ scale: 65, speed: 55 }} 
-          noise={{ opacity: 0.25, scale: 1.1 }} 
-        />
+      <section id="functions" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -468,12 +447,7 @@ export default function Home() {
       </section>
 
       {/* PROGRAMMING */}
-      <section id="programming" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
-        <EtherealShadow 
-          color="rgba(0, 0, 0, 0.96)" 
-          animation={{ scale: 65, speed: 55 }} 
-          noise={{ opacity: 0.25, scale: 1.1 }} 
-        />
+      <section id="programming" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -526,44 +500,39 @@ export default function Home() {
 #define TOUCH_SENSOR 1
 #define ET_SENSOR 2
 void move_forward(int speed, int distance) {
-    // Reset encoders for precise movement
     clear_enc_count(LEFT_MOTOR);
     clear_enc_count(RIGHT_MOTOR);
-    // Calculate target encoder counts
     int target = distance * 100;
-    // Move until target distance reached
     while(get_enc_count(LEFT_MOTOR) < target) {
         motor(LEFT_MOTOR, speed);
         motor(RIGHT_MOTOR, speed);
     }
-    // Stop motors
     motor(LEFT_MOTOR, 0);
     motor(RIGHT_MOTOR, 0);
 }
 void follow_line(int speed) {
     int light_value = analog(LIGHT_SENSOR);
-    if(light_value > 500) { // On dark line
+    if(light_value > 500) {
         motor(LEFT_MOTOR, speed);
         motor(RIGHT_MOTOR, speed - 20);
-    } else { // On light surface
+    } else {
         motor(LEFT_MOTOR, speed - 20);
         motor(RIGHT_MOTOR, speed);
     }
 }
 void avoid_obstacle() {
-    if(digital(TOUCH_SENSOR) == 0) { // Touch detected
+    if(digital(TOUCH_SENSOR) == 0) {
         motor(LEFT_MOTOR, -30);
         motor(RIGHT_MOTOR, -30);
-        msleep(1000); // Back up
+        msleep(1000);
         motor(LEFT_MOTOR, 30);
         motor(RIGHT_MOTOR, -30);
-        msleep(500); // Turn
+        msleep(500);
     }
 }
 int main() {
     kipr_init();
-    wait_for_button(0); // Wait for start
-    // Main loop
+    wait_for_button(0);
     for(int i = 0; i < 200; i++) {
         avoid_obstacle();
         follow_line(40);
@@ -600,12 +569,7 @@ int main() {
       </section>
 
       {/* MOTORS & SERVOS */}
-      <section id="motors" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 overflow-hidden">
-        <EtherealShadow 
-          color="rgba(0, 0, 0, 0.96)" 
-          animation={{ scale: 65, speed: 55 }} 
-          noise={{ opacity: 0.25, scale: 1.1 }} 
-        />
+      <section id="motors" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -626,7 +590,6 @@ int main() {
             </p>
           </motion.div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Motors Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -667,7 +630,6 @@ int main() {
               </div>
             </motion.div>
 
-            {/* Servos Card */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -714,12 +676,7 @@ int main() {
       </section>
 
       {/* COMMUNITY SERVICE */}
-      <section id="community" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-muted/30 overflow-hidden">
-        <EtherealShadow 
-          color="rgba(0, 0, 0, 0.96)" 
-          animation={{ scale: 65, speed: 55 }} 
-          noise={{ opacity: 0.25, scale: 1.1 }} 
-        />
+      <section id="community" className="relative min-h-screen flex items-center py-24 px-4 md:px-6 bg-black">
         <div className="relative z-10 max-w-7xl mx-auto w-full">
           <motion.div
             initial="hidden"
@@ -803,7 +760,7 @@ int main() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-white/10">
+      <footer className="py-12 px-4 border-t border-white/10 bg-black">
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-sm text-muted-foreground">
             © 2026 Made with 💖 By{" "}
