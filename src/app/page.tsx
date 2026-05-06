@@ -208,7 +208,7 @@ export default function Home() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-400">
               <Trophy className="w-4 h-4" />
-              <span></span>
+              <span>About Botball</span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               What is Botball?
@@ -235,7 +235,7 @@ export default function Home() {
               {
                 icon: Trophy,
                 title: "Competitive",
-                desc: "Teams compete in regional and national tournaments with seeded brackets. Points are scored by completing missions and documenting the engineering process.",
+                desc: "Teams compete in regional and national tournaments with seeded brackets. Points are scored by completing tasks, acquiring multipliers, and documenting the engineering process.",
                 color: "from-purple-500/20 to-pink-500/20",
               }
             ].map((item, i) => (
@@ -275,13 +275,13 @@ export default function Home() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-400/10 px-4 py-2 text-sm font-medium text-blue-400">
               <Bot className="w-4 h-4" />
-              <span></span>
+              <span>The Format</span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               How Botball Works
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Each team receives an identical kit of parts and has 8 weeks to build robots that can complete that year's game challenge. Robots must be fully autonomous.
+              Each team receives an identical kit of parts and has ~12 weeks to build robots that can complete that year's game challenge. Robots must be fully autonomous. That means if it fails, you cannot intervene.
             </p>
           </motion.div>
 
@@ -290,12 +290,12 @@ export default function Home() {
               {
                 title: "Kit Contents",
                 items: [
-                  "KIPR Robot Controller (Linux-based)",
-                  "2 Motors",
-                  "Servos for precise positioning",
-                  "Complete Sensor Suite (Light, IR, Touch)",
-                  "Structural Parts (Aluminum, Lexan, hardware)",
-                  "Rechargeable 12V Battery & Charger"
+                  "KIPR Robot Controller (Running Botball Software in Kiosk Mode on RaspiOS)",
+                  "4 Motors",
+                  "Both Full Servos and 9g Servos for precise positioning on things like the claw",
+                  "A full Suite of Sensors (Light, Tophat, ET Rangefinder)",
+                  "Structural Parts (Aluminum, Lego, Gears)",
+                  "Rechargeable 9V Battery & Charger"
                 ],
                 icon: Bot
               },
@@ -303,11 +303,11 @@ export default function Home() {
                 title: "Competition Format",
                 items: [
                   "2-minute autonomous matches",
-                  "Seeding matches + elimination bracket",
-                  "Scoring based on mission completion",
+                  "Seeding matches + double elimination bracket",
+                  "Scoring based on task completion * multiplier",
                   "Teamwork and documentation judged separately",
-                  "Engineering Journal required",
-                  "Onsite programming challenge (Double-Elimination)"
+                  "Engineering Journal (Documentation) required",
+                  "Interview of the team with a small presentation"
                 ],
                 icon: Trophy
               }
@@ -367,7 +367,7 @@ export default function Home() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/10 px-4 py-2 text-sm font-medium text-orange-400">
               <Code className="w-4 h-4" />
-              <span</span>
+              <span>KIPR C Library</span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               Botball Functions
@@ -382,40 +382,40 @@ export default function Home() {
               {
                 category: "Motor Control",
                 functions: [
-                  { name: "motor(port, speed)", desc: "Set motor speed from -100 to 100" },
-                  { name: "off(port)", desc: "Turn off a motor" },
-                  { name: "all_off()", desc: "Turn off all motors" },
+                  { name: "motor(port, power)", desc: "Move a wheel at a certain speed" },
+                  { name: "mav(port, velocity)", desc: "Move a wheel at a specified velocity" },
+                  { name: "ao()", desc: "Turns off all motors" },
                 ]
               },
               {
                 category: "Sensor Reading",
                 functions: [
-                  { name: "analog(port)", desc: "Read analog sensor (0-1023)" },
-                  { name: "digital(port)", desc: "Read digital sensor (0 or 1)" },
-                  { name: "et_distance(port)", desc: "Read ET rangefinder distance" },
+                  { name: "analog(port)", desc: "Reads analog sensor (Analog value)" },
+                  { name: "digital(port)", desc: "Reads digital sensor (0 or 1)" },
+                  { name: "wait_for_light (port)", desc: "Waits for light to be turned on before executing the rest of the code" },
                 ]
               },
               {
-                category: "Encoders",
+                category: "Position Counters",
                 functions: [
-                  { name: "get_enc_count(port)", desc: "Get encoder tick count" },
-                  { name: "clear_enc_count(port)", desc: "Reset encoder to zero" },
-                  { name: "set_enc_rate(port, value)", desc: "Set encoder count rate" },
+                  { name: "get_motor_position_counter(port)", desc: "Gets the current motor position" },
+                  { name: "clear_motor_position_counter(port)", desc: "Clears the motor position counter" },
+                  { name: "gmpc(port)", desc: "Gets the current motor position" },
                 ]
               },
               {
                 category: "Servos",
                 functions: [
                   { name: "set_servo_position(port, pos)", desc: "Set servo to position" },
-                  { name: "enable_servo(port)", desc: "Enable servo output" },
-                  { name: "disable_servo(port)", desc: "Disable servo output" },
+                  { name: "enable_servos()", desc: "Enable servos output" },
+                  { name: "disable_servos()", desc: "Disable servos output" },
                 ]
               },
               {
                 category: "Timing",
                 functions: [
                   { name: "msleep(ms)", desc: "Pause execution for ms milliseconds" },
-                  { name: "sleep(seconds)", desc: "Pause execution for seconds" },
+                  { name: "shut_down_in(seconds)", desc: "Shuts down program after specified # of seconds" },
                   { name: "get_time()", desc: "Get system time in milliseconds" },
                 ]
               },
@@ -423,8 +423,8 @@ export default function Home() {
                 category: "System",
                 functions: [
                   { name: "wait_for_button(port)", desc: "Pause until button pressed" },
-                  { name: "kipr_init()", desc: "Initialize KIPR library" },
-                  { name: "kipr_close()", desc: "Shutdown KIPR library" },
+                  { name: "#include <kipr/kipr.h>", desc: "Include the KIPR library of Functions" },
+                  { name: "printf(“ ”)", desc: "Prints the specified text to the screen" },
                 ]
               }
             ].map((category, i) => (
@@ -475,13 +475,13 @@ export default function Home() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-green-400/30 bg-green-400/10 px-4 py-2 text-sm font-medium text-green-400">
               <Code className="w-4 h-4" />
-              <span></span>
+              <span>The Code</span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               Robot Programming
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Botball robots are programmed in C using the KIPR library. Code is written on a computer, compiled, and uploaded to the robot controller via USB.
+              Botball robots are programmed in C using the KIPR library. Code is written on a computer, compiled, and uploaded to the robot all through a self-hosted IDE (Integrated Development Environment) all on the bot.
             </p>
           </motion.div>
 
@@ -595,8 +595,8 @@ int main() {
           >
             {[
               { title: "C Language", desc: "Industry-standard programming with the KIPR library" },
-              { title: "Real-time Code", desc: "Runs directly on the robot controller without an OS" },
-              { title: "Sensor-driven", desc: "Code responds to sensor inputs to make autonomous decisions" }
+              { title: "Real-time Code", desc: "Runs directly on the robot controller without downloading any other software" },
+              { title: "Sensor-driven", desc: "Code uses sensor inputs to make autonomous decisions" }
             ].map((item, i) => (
               <div key={i} className="p-6 rounded-2xl border border-white/10 bg-background/50 backdrop-blur-sm">
                 <h4 className="font-semibold mb-2">{item.title}</h4>
@@ -621,13 +621,13 @@ int main() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/10 px-4 py-2 text-sm font-medium text-orange-400">
               <Cog className="w-4 h-4" />
-              <span></span>
+              <span>The Moving Parts</span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               Motors & Servos
             </h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Movement in Botball robots is controlled by motors for drive wheels and servos for precise positioning of arms, grippers, and other mechanisms.
+              Movement in Botball robots is controlled by motors for drive wheels and servos for precise positioning of claws, bulldozers, and other mechanisms.
             </p>
           </motion.div>
 
@@ -646,7 +646,7 @@ int main() {
                 </div>
                 <h3 className="text-3xl font-bold mb-4">Motors</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Used for drive wheels, conveyor belts, and other continuous rotation applications. Provide the main movement for Botball robots.
+                  Used for drive wheels and other continuous rotation applications. They provide the main drivetrain and movement for Botball robots.
                 </p>
                 <div className="space-y-4">
                   {[
@@ -687,14 +687,14 @@ int main() {
                 </div>
                 <h3 className="text-3xl font-bold mb-4">Servos</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
-                  Position-controlled devices that rotate to a specific angle (0-180 degrees) and hold position. Used for grippers, arms, and lifting mechanisms.
+                  Position-controlled devices that rotate to a specific angle (0-180 degrees) and hold position. Used for claws, bulldozers, and other lifting mechanisms.
                 </p>
                 <div className="space-y-4">
                   {[
                     "Precision: ±1 degree accuracy across full range",
                     "Torque: ~40 oz-in at 6V operating voltage",
                     "Control: 1000-2000μs pulse width via PWM signal",
-                    "Rotation: 0-180 degrees (or continuous rotation mod)",
+                    "Rotation: 0-180 degrees (or split up into 2700 degrees to be more precise)",
                     "Response time: <0.2s to reach target position"
                   ].map((spec, j) => (
                     <motion.div
@@ -729,7 +729,7 @@ int main() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-pink-400/30 bg-pink-400/10 px-4 py-2 text-sm font-medium text-pink-400">
               <Trophy className="w-4 h-4" />
-              <span></span>
+              <span>Giving Back</span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               Community Service
@@ -748,32 +748,32 @@ int main() {
                 color: "from-yellow-500/20 to-orange-500/20"
               },
               {
-                title: "Library Demos",
-                desc: "Monthly robotics demonstrations at local libraries, showcasing our robots and teaching basic programming concepts.",
+                title: "Public Demos",
+                desc: "Routinely robotics demonstrations in public, in class, showcasing our robots and teaching basic programming concepts and strategies to onlookers.",
                 icon: Bot,
                 color: "from-blue-500/20 to-cyan-500/20"
               },
               {
-                title: "Mentor Program",
-                desc: "Team members volunteer to mentor younger students and help start new Botball teams in underserved schools.",
+                title: "Mentorship",
+                desc: "Experienced team members mentor younger members learn the foundations of robotics.",
                 icon: Trophy,
                 color: "from-purple-500/20 to-pink-500/20"
               },
               {
-                title: "Open House Events",
-                desc: "Quarterly open house events where the community can see our robots in action and try programming themselves.",
+                title: "Open Building",
+                desc: "Open building in public, where the community can see our robots being built in real time to learn how to make their own robots.",
                 icon: Code,
                 color: "from-green-500/20 to-emerald-500/20"
               },
               {
                 title: "Girls in Robotics",
-                desc: "Special initiative to encourage girls to join robotics through targeted outreach and mentorship programs.",
+                desc: "Botball encourages girls to join robotics through targeted outreach and mentorship programs.",
                 icon: Cpu,
                 color: "from-pink-500/20 to-rose-500/20"
               },
               {
-                title: "Engineering Journal",
-                desc: "We document our entire design process and share it online as a free resource for other teams worldwide.",
+                title: "Documentation",
+                desc: "We document our entire design process to help younger members learn how to create real goals with timelines and plans; we also share our documentation online as a free resource for other teams worldwide.",
                 icon: Cog,
                 color: "from-indigo-500/20 to-blue-500/20"
               }
