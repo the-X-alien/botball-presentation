@@ -208,7 +208,7 @@ export default function Home() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-sm font-medium text-cyan-400">
               <Trophy className="w-4 h-4" />
-              <span>Educational Robotics</span>
+              <span></span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               What is Botball?
@@ -275,7 +275,7 @@ export default function Home() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-400/30 bg-blue-400/10 px-4 py-2 text-sm font-medium text-blue-400">
               <Bot className="w-4 h-4" />
-              <span>Competition Format</span>
+              <span></span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               How Botball Works
@@ -367,7 +367,7 @@ export default function Home() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/10 px-4 py-2 text-sm font-medium text-orange-400">
               <Code className="w-4 h-4" />
-              <span>KIPR C Library</span>
+              <span</span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               Botball Functions
@@ -475,7 +475,7 @@ export default function Home() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-green-400/30 bg-green-400/10 px-4 py-2 text-sm font-medium text-green-400">
               <Code className="w-4 h-4" />
-              <span>C Programming</span>
+              <span></span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               Robot Programming
@@ -621,7 +621,7 @@ int main() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-400/30 bg-orange-400/10 px-4 py-2 text-sm font-medium text-orange-400">
               <Cog className="w-4 h-4" />
-              <span>Actuators</span>
+              <span></span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               Motors & Servos
@@ -729,7 +729,7 @@ int main() {
           >
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-pink-400/30 bg-pink-400/10 px-4 py-2 text-sm font-medium text-pink-400">
               <Trophy className="w-4 h-4" />
-              <span>Community Impact</span>
+              <span></span>
             </div>
             <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-medium mb-6 bg-gradient-to-br from-foreground via-foreground to-foreground/70 bg-clip-text text-transparent">
               Community Service
