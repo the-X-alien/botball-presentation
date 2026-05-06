@@ -238,7 +238,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <item.icon className="w-8 h-8 text-foreground" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-2xl font-bold mb-4 text-white">{item.title}</h3>
+                  <h3 className="text-2xl font-bold mb-4 text-black">{item.title}</h3>
                   <p className="text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
@@ -310,7 +310,7 @@ export default function Home() {
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
                     <section.icon className="w-7 h-7 text-primary" />
                   </div>
-                  <h3 className="text-3xl font-bold mb-6 text-white">{section.title}</h3>
+                  <h3 className="text-3xl font-bold mb-6 text-black">{section.title}</h3>
                   <ul className="space-y-4">
                     {section.items.map((item, j) => (
                       <motion.li
@@ -334,7 +334,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SENSORS - No change to header */}
+      {/* SENSORS */}
       <section id="sensors" className="relative bg-[#0f172a]">
         <SensorShowcase onScrollNext={scrollToNext} nextLabel={sections[4]?.label || "Next"} />
       </section>
@@ -422,7 +422,7 @@ export default function Home() {
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-full blur-2xl group-hover:bg-primary/10 transition-colors duration-500" />
                 <div className="relative z-10">
-                  <h3 className="text-lg font-bold mb-4 text-white">{category.category}</h3>
+                  <h3 className="text-lg font-bold mb-4 text-black">{category.category}</h3>
                   <div className="space-y-3">
                     {category.functions.map((func, j) => (
                       <motion.div
@@ -602,7 +602,7 @@ int main() {
                 <div className="w-16 h-16 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6">
                   <Cog className="w-8 h-8 text-blue-400" />
                 </div>
-                <h3 className="text-3xl font-bold mb-4 text-white">Motors</h3>
+                <h3 className="text-3xl font-bold mb-4 text-black">Motors</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Used for drive wheels and other continuous rotation applications. They provide the main drivetrain and movement for Botball robots.
                 </p>
@@ -643,7 +643,7 @@ int main() {
                 <div className="w-16 h-16 rounded-2xl bg-purple-500/10 flex items-center justify-center mb-6">
                   <Cpu className="w-8 h-8 text-purple-400" />
                 </div>
-                <h3 className="text-3xl font-bold mb-4 text-white">Servos</h3>
+                <h3 className="text-3xl font-bold mb-4 text-black">Servos</h3>
                 <p className="text-muted-foreground mb-6 leading-relaxed">
                   Position-controlled devices that rotate to a specific angle (0-180 degrees) and hold position. Used for claws, bulldozers, and other lifting mechanisms.
                 </p>
@@ -749,7 +749,7 @@ int main() {
                   <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
                     <item.icon className="w-7 h-7 text-foreground" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-xl font-bold mb-3 text-white">{item.title}</h3>
+                  <h3 className="text-xl font-bold mb-3 text-black">{item.title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
                 </div>
               </motion.div>
@@ -764,7 +764,12 @@ int main() {
         <div className="max-w-7xl mx-auto text-center">
           <p className="text-sm text-muted-foreground">
             © 2026 Made with 💖 By{" "}
-            <a href="https://github.com/the-X-alien" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+            <a 
+              href="https://github.com/the-X-alien" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-white hover:underline font-medium"
+            >
               Dhiaan Dave
             </a>
             {" + The Thomas Russell Botball Team"}
